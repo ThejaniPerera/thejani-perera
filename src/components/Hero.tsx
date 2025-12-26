@@ -4,7 +4,7 @@ import resumePDF from '../assets/Thejani Perera Resume (1).pdf';
 
 const Hero = () => {
   return (
-    <section className="hero">
+    <section id="home" className="hero">
       <div className="hero-content">
         <div className="hero-image-container">
           <img src={profileImage} alt="Thejani Perera" className="hero-image" />

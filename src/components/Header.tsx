@@ -6,61 +6,102 @@ const Header = () => {
 
   useEffect(() => {
     const sections = document.querySelectorAll('section[id]');
+    const headerHeight = 100;
     
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 150; // Offset for header height
+    // Track intersection ratios for all sections
+    const sectionRatios = new Map<string, number>();
 
-      sections.forEach((section) => {
-        const sectionElement = section as HTMLElement;
-        const sectionTop = sectionElement.offsetTop;
-        const sectionHeight = sectionElement.offsetHeight;
-        const sectionId = section.getAttribute('id');
+    const updateActiveSection = () => {
+      // Handle case when at the very top of the page
+      if (window.scrollY < 50) {
+        setActiveSection('home');
+        return;
+      }
 
-        if (
-          scrollPosition >= sectionTop &&
-          scrollPosition < sectionTop + sectionHeight
-        ) {
-          setActiveSection(sectionId || '');
+      // Find section with highest intersection ratio
+      let maxRatio = 0;
+      let activeId = 'home';
+
+      sectionRatios.forEach((ratio, id) => {
+        if (ratio > maxRatio) {
+          maxRatio = ratio;
+          activeId = id;
         }
       });
 
-      // Handle case when at the top of the page
-      if (window.scrollY < 100) {
-        setActiveSection('');
+      // If no section has significant visibility, use scroll position
+      if (maxRatio < 0.1) {
+        const scrollPosition = window.scrollY + headerHeight;
+        
+        sections.forEach((section) => {
+          const sectionElement = section as HTMLElement;
+          const sectionTop = sectionElement.offsetTop;
+          const sectionBottom = sectionTop + sectionElement.offsetHeight;
+          const sectionId = section.getAttribute('id') || '';
+
+          if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+            activeId = sectionId;
+          }
+        });
       }
+
+      setActiveSection(activeId);
     };
 
-    // Use Intersection Observer for more accurate detection
+    // Intersection Observer for accurate section detection
     const observerOptions = {
       root: null,
-      rootMargin: '-100px 0px -60% 0px',
-      threshold: 0
+      rootMargin: `-${headerHeight}px 0px -60% 0px`,
+      threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
     };
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting && entry.intersectionRatio > 0) {
-          setActiveSection(entry.target.id);
+        const sectionId = entry.target.id;
+        if (entry.isIntersecting) {
+          sectionRatios.set(sectionId, entry.intersectionRatio);
+        } else {
+          sectionRatios.set(sectionId, 0);
         }
       });
+      updateActiveSection();
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
 
+    // Observe all sections
     sections.forEach((section) => {
+      const sectionId = section.getAttribute('id') || '';
+      sectionRatios.set(sectionId, 0);
       observer.observe(section);
     });
 
+    // Initial check
+    updateActiveSection();
+
+    // Scroll handler as additional check
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateActiveSection();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Check initial position
 
     return () => {
       observer.disconnect();
       window.removeEventListener('scroll', handleScroll);
+      sectionRatios.clear();
     };
   }, []);
 
   const navItems = [
+    { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
     { id: 'education', label: 'Education' },
     { id: 'experience', label: 'Experience' },
