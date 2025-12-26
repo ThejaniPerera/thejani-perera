@@ -1,0 +1,141 @@
+.contact {
+  background-color: #f8f9fa;
+}
+
+.contact-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.contact-item {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.contact-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.contact-item h4 {
+  margin: 0 0 0.5rem 0;
+  color: #2c3e50;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.contact-item p {
+  margin: 0;
+  color: #555;
+  line-height: 1.6;
+}
+
+.contact-item a {
+  color: #667eea;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+  color: #764ba2;
+  text-decoration: underline;
+}
+
+.contact-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.contact-links a {
+  background-color: white;
+  color: #667eea;
+  padding: 0.6rem 1.2rem;
+  border-radius: 5px;
+  border: 2px solid #667eea;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.contact-links a:hover {
+  background-color: #667eea;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+}
+
+.references {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.references-title {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin: 0 0 1.5rem 0;
+  font-weight: 600;
+  text-align: center;
+}
+
+.reference-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.reference-item {
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.reference-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.reference-item h4 {
+  font-size: 1.2rem;
+  color: #2c3e50;
+  margin: 0 0 0.75rem 0;
+  font-weight: 600;
+}
+
+.reference-item p {
+  font-size: 0.95rem;
+  color: #555;
+  margin: 0.5rem 0;
+  line-height: 1.6;
+}
+
+.reference-item a {
+  color: #667eea;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.reference-item a:hover {
+  color: #764ba2;
+  text-decoration: underline;
+}
+
+@media (max-width: 968px) {
+  .contact-content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+

@@ -1,0 +1,119 @@
+.experience {
+  background-color: #f8f9fa;
+}
+
+.experience-timeline {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  padding: 2rem 0;
+}
+
+.experience-timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, #667eea, #764ba2);
+}
+
+.experience-item {
+  position: relative;
+  margin-bottom: 3rem;
+  width: 45%;
+}
+
+.experience-item:nth-child(odd) {
+  left: 0;
+  text-align: right;
+  padding-right: 3rem;
+}
+
+.experience-item:nth-child(even) {
+  left: 55%;
+  text-align: left;
+  padding-left: 3rem;
+}
+
+.experience-item::before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #667eea;
+  border: 3px solid white;
+  box-shadow: 0 0 0 3px #667eea;
+  top: 0.5rem;
+}
+
+.experience-item:nth-child(odd)::before {
+  right: -8px;
+}
+
+.experience-item:nth-child(even)::before {
+  left: -8px;
+}
+
+.experience-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.experience-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.exp-title {
+  font-size: 1.4rem;
+  color: #2c3e50;
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+}
+
+.exp-organization {
+  font-size: 1.1rem;
+  color: #667eea;
+  margin: 0 0 0.5rem 0;
+  font-weight: 500;
+}
+
+.exp-period {
+  font-size: 0.95rem;
+  color: #888;
+  margin: 0 0 1rem 0;
+  font-style: italic;
+}
+
+.exp-description {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 968px) {
+  .experience-timeline::before {
+    left: 2rem;
+  }
+  
+  .experience-item {
+    width: 100%;
+    left: 0 !important;
+    text-align: left !important;
+    padding-left: 4rem !important;
+    padding-right: 0 !important;
+  }
+  
+  .experience-item::before {
+    left: 1.5rem !important;
+    right: auto !important;
+  }
+}
+
