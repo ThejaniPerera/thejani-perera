@@ -14,6 +14,26 @@
   margin: 0 auto;
 }
 
+.hero-image-container {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.hero-image:hover {
+  transform: scale(1.05);
+}
+
 .hero-name {
   font-size: 3.5rem;
   margin: 0 0 1rem 0;
@@ -83,6 +103,11 @@
   
   .hero-subtitle {
     font-size: 1rem;
+  }
+
+  .hero-image {
+    width: 150px;
+    height: 150px;
   }
 }
 

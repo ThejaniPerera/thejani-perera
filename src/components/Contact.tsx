@@ -1,4 +1,5 @@
 import './Contact.css';
+import resumePDF from '../assets/Thejani Perera Resume (1).pdf';
 
 const Contact = () => {
   return (
@@ -42,6 +43,17 @@ const Contact = () => {
                   </a>
                   <a href="https://github.com/ThejaniPerera" target="_blank" rel="noopener noreferrer">
                     GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="contact-item">
+              <span className="contact-icon">📄</span>
+              <div>
+                <h4>Resume</h4>
+                <div className="contact-links">
+                  <a href={resumePDF} download="Thejani_Perera_Resume.pdf" className="cv-download-link">
+                    Download CV
                   </a>
                 </div>
               </div>
